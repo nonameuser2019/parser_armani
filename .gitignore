@@ -1,3 +1,7 @@
-./venv/
+venv/
+images/
+.gitignore
+armani.db
+_pycashe_/
 test.py
 test_2.py
