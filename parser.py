@@ -90,11 +90,13 @@ def get_parse_card(html):
         cat_name = catagery_lst[1].text + '/' + catagery_lst[2].text + '/' + catagery_lst[3].text
     except Exception as e:
         print(e)
-        cat_name = None
+        print('cat_name')
+        cat_name = ''
     try:
         name = soup.find('span', class_='modelName inner').text
     except Exception as e:
         print(e)
+        print('name')
         name = soup.find('span', class_='microCategory').text
     try:
         details = soup.find('div', class_='details').find('ul').find_all('li')
@@ -103,6 +105,7 @@ def get_parse_card(html):
     except Exception as e:
         print(e)
         datails_list.append(None)
+        print('details_list')
     return name, datails_list, cat_name
 
 
@@ -112,7 +115,7 @@ def get_page_count(html):
         page_count = soup.find('ul', class_='pagesWrapper').find('li', class_='lastPage').text
         return int(page_count)
     except:
-        print('Error page count not defined')
+        pass
         try:
             page_count = soup.find('ul', class_='pagesWrapper').find_all('li', class_='')[-1].text.strip()
             return int(page_count)
@@ -123,6 +126,7 @@ def get_page_count(html):
 
 def parser_list(html):
     soup = BeautifulSoup(html.content, 'html.parser')
+    url = html.url
     try:
         section = soup.find('main', id='main').find_all('article', class_='item')
     except:
@@ -131,7 +135,6 @@ def parser_list(html):
         try:
             card_url = item.find('a')['href']
         except Exception as e:
-            print(e)
             card_url = None
 
         itm = item['data-ytos-track-product-data'].split(',')
@@ -167,17 +170,18 @@ def parser_list(html):
         if response.status_code == 200:
             for colors in response.json()['Colors']:
                 colors_list.append(colors['Description'])
-            for size in response.json()['Sizes']:
-                sizes_list.append(size['Description'])
+            for size in response.json()['ModelColorSizes']:
+                if size['Color']['Code10'] == product_id:
+                    sizes_list.append(size['Size']['Description'])
         else:
-            colors_list.append(None)
-            sizes_list.append(None)
+            colors_list.append('None')
+            sizes_list.append('None')
         product_name, datails_list, cat_name = get_parse_card(get_html(card_url))
 
         Session = sessionmaker(bind=db_engine)
         session = Session()
         new_element = Armani(product_name, color, full_price, discount_price, product_id, ','.join(img_name_list),
-                             ','.join(sizes_list), ','.join(colors_list), ','.join(datails_list), cat_name)
+                             ','.join(sizes_list), ','.join(colors_list), ','.join(datails_list), cat_name, url)
         session.add(new_element)
         session.commit()
         sizes_list.clear()
