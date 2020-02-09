@@ -12,12 +12,14 @@ from model import *
 import os
 
 
+sizes_list = []
 cat_url_list = []
 proxy = {'HTTPS': '163.172.182.164:3128'}
 ua = UserAgent()
 HEADERS = {
     'user-agent': ua.random
 }
+API_URL = 'https://www.armaniexchange.com/yTos/api/Plugins/ItemPluginApi/GetCombinationsAsync/?siteCode=ARMANIEXCHANGE_US'
 
 
 def read_file_url():
@@ -60,6 +62,7 @@ def get_page_count(html):
 
 
 def parser_list(html):
+    global product_id
     soup = BeautifulSoup(html.content, 'html.parser')
     try:
         section = soup.find('main', id='main').find_all('article', class_='item')
@@ -79,11 +82,20 @@ def parser_list(html):
 
             if i.find('product_discountedPrice_tf') != -1:
                 discount_price = i[29:]
+        payload = {
+            'code10': product_id
+        }
+        response = requests.get(API_URL, proxies=proxy, headers=HEADERS, params=payload)
+        if response.status_code == 200:
+            for size in response.json()['ModelColorSizes']:
+                if size['Color']['Code10'] == product_id:
+                    sizes_list.append(size['Size']['Description'])
         Session = sessionmaker(bind=db_engine)
         session = Session()
-        new_element = ArmaniPrice(color, full_price, discount_price, product_id)
+        new_element = ArmaniPrice(color, full_price, discount_price, product_id, ','.join(sizes_list))
         session.add(new_element)
         session.commit()
+        sizes_list.clear()
 
 def main():
     cat_url_list = read_file_url()

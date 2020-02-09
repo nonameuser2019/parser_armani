@@ -95,17 +95,13 @@ def get_parse_card(html):
     try:
         name = soup.find('span', class_='modelName inner').text
     except Exception as e:
-        print(e)
-        print('name')
         name = soup.find('span', class_='microCategory').text
     try:
         details = soup.find('div', class_='details').find('ul').find_all('li')
         for li in details:
              datails_list.append(li.text)
     except Exception as e:
-        print(e)
         datails_list.append(None)
-        print('details_list')
     return name, datails_list, cat_name
 
 

@@ -47,12 +47,14 @@ class ArmaniPrice(Base):
     full_price = Column(Float)
     discount_price = Column(Float)
     product_id = Column(String)
+    sezes_list = Column(String)
 
-    def __init__(self, color, full_price, discount_price, product_id):
+    def __init__(self, color, full_price, discount_price, product_id, sizes_list):
         self.color = color
         self.full_price = full_price
         self.discount_price = discount_price
         self.product_id = product_id
+        self.sezes_list = sizes_list
     def __repr__(self):
         return "CData '%s'" % (self.url)
 
