@@ -22,9 +22,10 @@ class Armani(Base):
     details_list = Column(String)
     cat_name = Column(String)
     url = Column(String)
+    card_id = Column(String)
 
     def __init__(self, product_name, color, full_price, discount_price, product_id, img_name, size_list,
-                 color_list, details_list, cat_name, url):
+                 color_list, details_list, cat_name, url, card_id):
         self.product_name = product_name
         self.color = color
         self.full_price = full_price
@@ -36,6 +37,7 @@ class Armani(Base):
         self.details_list = details_list
         self.cat_name = cat_name
         self.url = url
+        self.card_id = card_id
 
     def __repr__(self):
         return "CData '%s'" % (self.url)

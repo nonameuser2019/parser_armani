@@ -102,7 +102,11 @@ def get_parse_card(html):
              datails_list.append(li.text)
     except Exception as e:
         datails_list.append(None)
-    return name, datails_list, cat_name
+    try:
+        card_id = soup.find('div', class_='details').find('ul').find_all('li')[-1].text
+    except:
+        card_id = None
+    return name, datails_list, cat_name, card_id
 
 
 def get_page_count(html):
@@ -172,12 +176,12 @@ def parser_list(html):
         else:
             colors_list.append('None')
             sizes_list.append('None')
-        product_name, datails_list, cat_name = get_parse_card(get_html(card_url))
+        product_name, datails_list, cat_name, card_id = get_parse_card(get_html(card_url))
 
         Session = sessionmaker(bind=db_engine)
         session = Session()
         new_element = Armani(product_name, color, full_price, discount_price, product_id, ','.join(img_name_list),
-                             ','.join(sizes_list), ','.join(colors_list), ','.join(datails_list), cat_name, url)
+                             ','.join(sizes_list), ','.join(colors_list), ','.join(datails_list), cat_name, url, card_id)
         session.add(new_element)
         session.commit()
         sizes_list.clear()

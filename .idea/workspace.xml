@@ -4,9 +4,9 @@
     <list default="true" id="750549ce-4a6d-4a35-8de3-4f8b5d4e4e57" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/armani.db" beforeDir="false" afterPath="$PROJECT_DIR$/armani.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser_price.py" beforeDir="false" afterPath="$PROJECT_DIR$/parser_price.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +34,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Python.parser_price">
+  <component name="RunManager" selected="Python.test">
     <configuration name="model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="parser_armani" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,10 +142,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.parser_price" />
         <item itemvalue="Python.model" />
         <item itemvalue="Python.parser" />
-        <item itemvalue="Python.test" />
         <item itemvalue="Python.test_2" />
       </list>
     </recent_temporary>
@@ -176,26 +176,26 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1581177324710">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1581354150979">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581177324710" />
-    <state width="1879" height="279" key="GridCell.Tab.0.bottom" timestamp="1581253278367">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581354150979" />
+    <state width="1879" height="279" key="GridCell.Tab.0.bottom" timestamp="1581531699847">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1879" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581253278367" />
-    <state width="1879" height="279" key="GridCell.Tab.0.center" timestamp="1581253278367">
+    <state width="1879" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581531699847" />
+    <state width="1879" height="279" key="GridCell.Tab.0.center" timestamp="1581531699846">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1879" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1581253278367" />
-    <state width="1879" height="279" key="GridCell.Tab.0.left" timestamp="1581253278367">
+    <state width="1879" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1581531699846" />
+    <state width="1879" height="279" key="GridCell.Tab.0.left" timestamp="1581531699846">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1879" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1581253278367" />
-    <state width="1879" height="279" key="GridCell.Tab.0.right" timestamp="1581253278367">
+    <state width="1879" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1581531699846" />
+    <state width="1879" height="279" key="GridCell.Tab.0.right" timestamp="1581531699846">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1879" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1581253278367" />
+    <state width="1879" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1581531699846" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1579812011198">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -212,10 +212,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579812011198" />
-    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1579971826706">
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1581353973275">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1579971826706" />
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581353973275" />
     <state x="531" y="256" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1579800696637">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
