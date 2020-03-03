@@ -12,6 +12,8 @@ from model import *
 import os
 
 
+cat_name_list = []
+product_id_list = []
 cat_url_list = []
 sizes_list = []
 colors_list = []
@@ -23,6 +25,8 @@ HEADERS = {
     'user-agent': ua.random
 }
 API_URL = 'https://www.armaniexchange.com/yTos/api/Plugins/ItemPluginApi/GetCombinationsAsync/?siteCode=ARMANIEXCHANGE_US'
+Session = sessionmaker(bind=db_engine)
+session = Session()
 
 
 def create_dir_name():
@@ -152,6 +156,7 @@ def parser_list(html):
                 discount_price = i[29:]
 
 
+
         try:
             img = item.find('img', class_='mainImage')['data-origin']
             img_main_photo = img[:img.find('_')]
@@ -159,6 +164,15 @@ def parser_list(html):
         except:
             img = item.find('img', class_='mainImage')['src']
             img_main_photo = img[:img.find('_')]
+
+        try:
+            # копируем ид всех цветов обьявлений по которым можно потом свести товары
+            all_color = item.find('a', class_='more-colors-label')['data-store-opt']
+            data = json.loads(all_color)['options']['data']['ItemImage']
+            for code in data:
+                product_id_list.append(code['Code10'])
+        except:
+            pass
 
         # вызов функции, которая скачивает все фото и возвращает лист с их именами
         img_name_list = get_photo(img_main_photo, create_dir_name())
@@ -176,17 +190,30 @@ def parser_list(html):
         else:
             colors_list.append('None')
             sizes_list.append('None')
+        try:
+            # парсинг категории
+            category = soup.find_all('li', class_='crumb')
+            for li in category[1:]:
+                cat_name_list.append(li.find('span', class_='text').text)
+        except:
+            pass
         product_name, datails_list, cat_name, card_id = get_parse_card(get_html(card_url))
-
-        Session = sessionmaker(bind=db_engine)
-        session = Session()
-        new_element = Armani(product_name, color, full_price, discount_price, product_id, ','.join(img_name_list),
-                             ','.join(sizes_list), ','.join(colors_list), ','.join(datails_list), cat_name, url, card_id)
-        session.add(new_element)
-        session.commit()
+        try:
+            new_element = Armani(product_name, color, full_price, discount_price, product_id, ','.join(img_name_list),
+                                 ','.join(sizes_list), ','.join(colors_list), ','.join(datails_list), ','.join(cat_name_list), card_url, ','.join(product_id_list))
+            session.add(new_element)
+            session.commit()
+        except:
+            try:
+                with open('error.txt', 'a') as read_file:
+                    read_file.writelines(f'Url: {card_url} id card: {card_id} \n')
+            except:
+                pass
         sizes_list.clear()
         colors_list.clear()
         datails_list.clear()
+        product_id_list.clear()
+        cat_name_list.clear()
 
 
 def main():
